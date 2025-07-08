@@ -1,0 +1,25 @@
+extends ../template
+
+block layout-content
+  div(class="bg-white shadow-md rounded-lg overflow-hidden")
+    .container.mx-auto.py-6.px-4
+      if categories && categories.length > 0
+        table(class="w-full border-collapse divide-y divide-gray-200 shadow-sm max-w-3xl")
+          thead
+            tr
+              th(class="bg-gray-50 py-3 text-left font-semibold") Name 
+              th(class="bg-gray-50 py-3 text-left font-semibold") Description 
+              th(class="bg-gray-50 py-3 text-left font-semibold") Actions 
+          tbody
+            each category in categories
+              tr(class="hover:bg-gray-100 transition-colors duration-200")
+                td= category.name
+                td= category.description
+                td
+                  div(class="flex items-center left px-4 py-2 text-sm gap-3")
+                    button(href=`/admin/categories/${category._id}/edit` class="inline-block bg-yellow-500 hover:bg-yellow-700 text-white font-medium rounded-md py-1.5 px-3 transition-all focus:outline-none focus:ring-2 focus:ring-yellow-500") 
+                      a(href=`/admin/categories/${category._id}/edit`) Edit
+                    button(type="button" data-category-id="${category._id}" class="inline-block bg-red-500 hover:bg-red-700 text-white font-medium rounded-md py-1.5 px-3 transition-all focus:outline-none focus:ring-2 focus:ring-red-500 delete-category") 
+                      a(href=`/admin/categories/${category._id}/delete`) Delete
+      else
+        p(class="text-gray-600 mt-4") No categories found.

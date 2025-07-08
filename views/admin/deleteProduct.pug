@@ -1,0 +1,21 @@
+extends ../template
+
+block layout-content
+    div(class="modal fade" id="deleteProductModal" tabindex="-1" aria-labelledby="deleteProductModalLabel" aria-hidden="true")
+    div(class="modal-dialog")
+        div(class="modal-content border-none shadow-lg bg-white rounded-3xl")
+        div(class="p-4")
+            
+            form(method="POST", action=`/admin/products/${product._id}/delete/save`)
+                div(class="flex items-center justify-between mb-6")
+                div(class="text-sm text-gray-600 leading-relaxed")
+                    strong Do you really want to delete </strong>
+                    strong #{product.name}
+                    strong (ID: </strong>
+                    strong #{product.id})?
+                    p(class="mt-2 text-xs font-light") This action cannot be undone!
+                div(class="flex items-center justify-end space-x-4")
+                    button(type="button" class="btn btn-secondary text-sm py-2 px-4 rounded-md") Cancel
+                    button(type="submit" id="deleteProductBtn").btn.btn-danger.text-sm.py-2.px-4.rounded-md.border Yes, Delete
+            div(class="bg-gray-100 border-t border-gray-200 p-4 text-center")
+                p(class="text-xs font-light text-gray-500") All related data will also be permanently removed.

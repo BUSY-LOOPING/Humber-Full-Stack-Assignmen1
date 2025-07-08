@@ -1,0 +1,16 @@
+extends ../template
+
+block layout-content
+    div(class="p-10")            
+        form(method="POST", action=`/admin/categories/${category._id}/delete/save`)
+            div(class="flex items-center justify-between mb-6")
+            div(class="text-sm text-gray-600 leading-relaxed")
+                strong Do you really want to delete </strong>
+                strong #{category.name}
+                strong (ID: </strong>
+                strong #{category.id}) ?
+                p(class="mt-2 text-xs font-light") This action cannot be undone!
+            div(class="flex items-center justify-end space-x-4")
+                button(type="submit" id="deleteCategoryBtn").btn.btn-danger.text-sm.py-2.px-4.rounded-md.border Yes, Delete
+        div(class="bg-gray-100 border-t border-gray-200 p-4 text-center")
+            p(class="text-xs font-light text-gray-500") All related data will also be permanently removed.
