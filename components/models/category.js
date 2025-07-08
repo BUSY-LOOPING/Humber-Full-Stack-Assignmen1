@@ -1,11 +1,23 @@
 import mongoose from 'mongoose';
+import { Product } from './product';
 
 const categorySchema = new mongoose.Schema({
     name: String,
     description: String
 });
+categorySchema.pre('delete', async function(next) {
+  // Check if any products still reference this category
+  const productCount = await Product.countDocuments({ category: this._id });
+
+  if (productCount > 0) {
+    return next(new Error('Cannot delete category - it is still referenced by products'));
+  }
+
+  next(); // Proceed with deletion if no references found
+});
 
 const Category = mongoose.model('Category', categorySchema);
+
 
 // Create a new category
 async function createCategory(categoryData) {
