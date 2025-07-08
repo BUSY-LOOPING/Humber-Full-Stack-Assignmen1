@@ -3,7 +3,6 @@ import adminController from "./controller.js";
 
 const router = express.Router(); 
 
-//admin routes
 // Product routes
 router.get('/', adminController.dashboard);
 router.get('/products', adminController.listProductsPage);

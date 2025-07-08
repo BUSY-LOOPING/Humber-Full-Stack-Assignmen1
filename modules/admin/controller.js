@@ -1,8 +1,6 @@
-// src/controllers/admin.js
 import { Product, createProduct, getAllProducts, updateProduct, getProductById, deleteProduct } from '../../components/models/product.js';
 import { Category, getAllCategories, createCategory, getCategoryById, deleteCategory } from '../../components/models/category.js';
 
-// Admin dashboard controller
 async function dashboard(req, res) { 
 	try {
 		const productCount = await Product.countDocuments({});
@@ -23,7 +21,6 @@ async function dashboard(req, res) {
 	}
 }
 
-// Product controllers
 async function listProductsPage(req, res) {
 	try {
 		const products = await getAllProducts();
@@ -45,7 +42,6 @@ async function saveNewProduct(req, res) {
     const categoryId = req.body.category;
     const imageUrl = req.body.imageUrl;
 
-    // Validate required fields (you can add more validation as needed)
     if (!name || !price) {
         return res.status(400).json({ message: 'Name and price are required' });
     }
@@ -151,8 +147,6 @@ async function saveUpdatedCategory(req, res) {
 }   
 
 
-
-// Category controllers
 async function listCategoriesPage(req, res) {
 	try {
 		const categories = await getAllCategories();
@@ -164,7 +158,7 @@ async function listCategoriesPage(req, res) {
 }
 
 function newCategoryPage(req, res) {
-	res.render('admin/createCategory', { title: 'New Product'});
+	res.render('admin/createCategory', { title: 'New Category'});
 }
 
 async function saveNewCategory(req, res) {
@@ -172,7 +166,6 @@ async function saveNewCategory(req, res) {
     const description = req.body.description;
 
     if (!name || !description) {
-        // If validation fails, return errors to be displayed in the form
         return res.render('admin/createCategory');
     }
 
@@ -182,14 +175,11 @@ async function saveNewCategory(req, res) {
     };
 
     try {
-        // Create the new category in the database
         const newCategory = await createCategory(categoryData);
 
-        // Redirect to the categories listing page
         return res.redirect('/admin/categories');
     } catch (error) {
         console.error('Error creating category:', error);
-        // Return validation errors if they exist
         return res.render('admin/createCategory');
     }
 }
