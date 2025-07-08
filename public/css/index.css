@@ -1,31 +1,35 @@
 .product-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    padding: 2rem;
-}
-
-.product-row {
-    display: flex;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
+    padding: 2rem;
+    max-width: 100%; 
+    margin: 0 auto; 
 }
 
 .product {
-    text-align: center;
-    max-width: 200px;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    /* text-align: center; */
+    overflow: hidden; 
 }
 
+
 .product img {
-    width: 100%;
-    border-radius: 8px;
+    width: 80%;
+    height: auto;
+    object-fit: cover; /* Cover the container while maintaining aspect ratio */
 }
 
 .product-name {
     font-weight: bold;
     margin-top: 0.5rem;
+    padding: 0.5rem;
 }
 
 .product-price {
     color: #555;
+    padding: 0.5rem;
 }
