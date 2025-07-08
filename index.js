@@ -14,6 +14,7 @@ import cors from 'cors';
 connect();
 
 const __dirname = import.meta.dirname;
+console.log(`DIRECTORY = ${__dirname}`);
 
 const app = express();
 const port = process.env.PORT || '8888';
