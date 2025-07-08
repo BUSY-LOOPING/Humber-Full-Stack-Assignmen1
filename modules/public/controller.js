@@ -1,4 +1,4 @@
-import { getAllProducts } from "../../components/models/product";
+import { getAllProducts } from "../../components/models/product.js";
 
 function aboutUsPage(req, res) {
     response.render("about", {title : "About Us"});
