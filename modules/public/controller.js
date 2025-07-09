@@ -1,7 +1,7 @@
 import { getAllProducts } from "../../components/models/product.js";
 
 function aboutUsPage(req, res) {
-    response.render("about", {title : "About Us"});
+    res.render("about", {title : "About Us"});
 }
 
 async function homePage(req, res) {
