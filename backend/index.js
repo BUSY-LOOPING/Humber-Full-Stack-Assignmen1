@@ -19,12 +19,13 @@ console.log(`DIRECTORY = ${__dirname}`);
 const app = express();
 const port = process.env.PORT || '8888';
 
+app.use(express.static(path.join(__dirname, '../frontend/dist'))); 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 
 app.use(express.static(path.join(__dirname, "public")));
-app.use(express.json()); // For parsing JSON bodies
-app.use(cors());         // Enable CORS for all routes
+app.use(express.json()); 
+app.use(cors());         
 app.use(express.urlencoded());
 
 app.use('/admin', adminPageRouter);
